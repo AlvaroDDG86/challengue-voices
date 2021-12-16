@@ -19,5 +19,8 @@ export default {
 <style lang="scss" scoped>
 .base-icon {
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

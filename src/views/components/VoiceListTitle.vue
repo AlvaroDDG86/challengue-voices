@@ -28,11 +28,12 @@ export default {
   .voice-list-title__line {
     height: 1px;
     flex: 1 1 auto;
-    margin-left: 2em;
-    background-color: $color-gray;
+    margin-left: 1em;
+    background-color: $color-gray-ligth;
   }
   .voice-list-title__text {
-    color: $color-gray;
+    color: $color-gray-ligth;
+    font-weight: bold;
   }
 }
 </style>

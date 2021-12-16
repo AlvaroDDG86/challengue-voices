@@ -35,7 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 .voice-list {
-  padding: 0 3em;
+  padding: 2.5em 3em 0em 3em;
   .voice-list__content {
     color: white;
     display: grid;

@@ -26,5 +26,6 @@ export default {
 .voices {
   margin: 0 auto;
   max-width: 1024px;
+  min-width: 400px;
 }
 </style>

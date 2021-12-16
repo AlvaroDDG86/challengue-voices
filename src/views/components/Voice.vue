@@ -46,11 +46,11 @@ export default {
 .voice {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   padding: 1em;
-  width: 6em;
+  width: 7em;
   height: 10em;
   text-align: center;
   cursor: pointer;

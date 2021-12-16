@@ -50,30 +50,26 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 
 .base-select {
   position: relative;
-  width: 100%;
+  width: 9em;
   text-align: left;
   outline: none;
-  height: 47px;
-  line-height: 47px;
+  height: 2em;
+  line-height: 2em;
+  margin: 5px;
+
 }
 
 .selected {
   background-color: #080D0E;
-  border-radius: 6px;
-  border: 1px solid #858586;
-  color: #ffffff;
-  padding-left: 8px;
+  color: $color-gray-dark;
+  padding-left: 1.5em;
   cursor: pointer;
   user-select: none;
-}
-
-.selected.open{
-  border: 1px solid #CE9B2C;
-  border-radius: 6px 6px 0px 0px;
+  border-radius: 3px;
 }
 
 .selected:after {
@@ -84,31 +80,29 @@ export default {
   width: 0;
   height: 0;
   border: 4px solid transparent;
-  border-color: #fff transparent transparent transparent;
 }
 
 .items {
   color: #ffffff;
-  border-radius: 0px 0px 6px 6px;
   overflow: hidden;
-  border-right: 1px solid #CE9B2C;
-  border-left: 1px solid #CE9B2C;
-  border-bottom: 1px solid #CE9B2C;
   position: absolute;
   background-color: #080D0E;
   left: 0;
   right: 0;
+  z-index: 2;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.164);
 }
 
 .item{
-  color: #ffffff;
-  padding-left: 8px;
+  color: $color-gray-dark;
+  border-top: solid 0.01em $color-gray-ligth;
+  padding-left: 1.5em;
   cursor: pointer;
   user-select: none;
 }
 
 .item:hover{
-  background-color: #B68A28;
+  color: #ffffff;
 }
 
 .selectHide {
