@@ -37,7 +37,7 @@ export default new Vuex.Store({
   mutations: {
     SET_FAVOURITE: (state, payload) => {
       const index = state.favs.findIndex(voice => voice.id === payload.id)
-      if (index === -1) state.favs.push(payload)
+      if (index === -1) state.favs.unshift(payload)
       else state.favs.splice(index, 1)
     },
     SET_ACTIVE: (state, payload) => {
@@ -75,13 +75,25 @@ export default new Vuex.Store({
     voices: (state) => {
       return state.voices.filter(voice => {
         return (
-          voice.name.includes(state.filters.text.toLowerCase()) &&
+          voice.name.toLowerCase().includes(state.filters.text.toLowerCase()) &&
           voice.tags.some(tag => (state.filters.tags === 'All' ||
               state.filters.tags.includes(tag)))
         )
-      }).sort(state.filters.order === 'asc' ? sortAsc : sortDesc)
+      }).sort(state.filters.order === 'asc' ? sortAsc : sortDesc).map(voice => {
+        return {
+          ...voice,
+          fav: state.favs.findIndex(fav => fav.id === voice.id) !== -1,
+          active: state.active && voice.id === state.active.id
+        }
+      })
     },
-    favs: (state) => state.favs,
+    favs: (state) => state.favs.map(voice => {
+      return {
+        ...voice,
+        fav: true,
+        active: state.active && voice.id === state.active.id
+      }
+    }),
     active: (state) => state.active,
     tagOptions: (state) => {
       return [

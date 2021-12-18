@@ -1,6 +1,6 @@
 <template>
   <div class="base-icon" v-on="$listeners">
-    <img :src="require(`@/assets/images/${name}`)" alt="">
+    <img :src="require(`@/assets/images/${name}`)" :alt="`icon-${name}`">
   </div>
 </template>
 

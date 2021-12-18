@@ -1,6 +1,6 @@
 <template>
   <div class="voice-list-title">
-    <span class="voice-list-title__text">{{ title }}</span>
+    <span data-testid="title" class="voice-list-title__text">{{ title }}</span>
     <span class="voice-list-title__line"></span>
   </div>
 </template>

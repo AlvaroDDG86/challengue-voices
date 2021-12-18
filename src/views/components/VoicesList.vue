@@ -4,8 +4,8 @@
     <div v-if="voices.length" class="voice-list__content">
       <Voice v-for="voice in voices" :key="voice.id" :voice="voice" />
     </div>
-    <div v-else class="voice-list__notfav">
-      No Favourite voices
+    <div data-testid="message" v-else class="voice-list__notfav">
+      No voices yet
     </div>
   </div>
 </template>
@@ -42,10 +42,10 @@ export default {
     gap: 10px;
     justify-content: space-evenly;
     justify-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
 
     @media only screen and (min-width: 600px) {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
     }
 
     @media only screen and (min-width: 768px) {

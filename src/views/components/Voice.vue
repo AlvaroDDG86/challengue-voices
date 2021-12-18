@@ -1,19 +1,18 @@
 <template>
-  <div class="voice" @click="setActive">
-    <div class="voice__fav" @click.stop="setFav">
-      <img :src="require(`@/assets/images/${isFavourite}`)" alt="icon">
+  <div data-testid="voice" class="voice" @click="() => $store.dispatch('setActive', voice)">
+    <div data-testid="fav" class="voice__fav" @click.stop="() => $store.dispatch('setFavourite', voice)">
+      <img :src="require(`@/assets/images/${favImg}`)" alt="icon">
     </div>
-    <div class="voice__icon" :class="{ 'voice__icon--active' : isActive}">
-      <img :src="require(`@/assets/images/${voice.icon}`)" alt="icon">
+    <div data-testid="icon-content" class="voice__icon" :class="{ 'voice__icon--active' : voice.active}">
+      <img data-testid="icon" :src="require(`@/assets/images/${voiceIcon}`)" alt="icon">
     </div>
-    <div class="voice__name" :class="{ 'voice__name--active' : isActive}">
+    <div data-testid="name" class="voice__name" :class="{ 'voice__name--active' : voice.active}">
       {{ voice.name }}
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
   name: 'Voice',
   props: {
@@ -23,20 +22,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['favs', 'active']),
-    isFavourite () {
-      return this.favs.findIndex(fav => fav.id === this.voice.id) !== -1 ? 'voice-favourite.svg' : 'voice-favourite-off.svg'
+    favImg () {
+      return this.voice.fav ? 'voice-favourite.svg' : 'voice-favourite-off.svg'
     },
-    isActive () {
-      return this.active && this.active.id === this.voice.id
-    }
-  },
-  methods: {
-    setFav () {
-      this.$store.dispatch('setFavourite', this.voice)
-    },
-    setActive () {
-      this.$store.dispatch('setActive', this.voice)
+    voiceIcon () {
+      return this.voice.icon
     }
   }
 }

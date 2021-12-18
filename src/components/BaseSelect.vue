@@ -1,25 +1,31 @@
 <template>
-  <div
-    class="base-select"
-    :tabindex="tabindex"
-    @blur="open = false"
-  >
+  <div class="base-select" :tabindex="tabindex" @blur="open = false">
     <div
-      class="selected"
-      :class="{open: open}"
+      class="base-select__selected"
+      :class="{ open: open }"
       @click="open = !open"
     >
       {{ selected }}
+      <img
+        class="selected__arrow"
+        :class="{ 'selected__arrow--open': open }"
+        :src="require('@/assets/images/select-arrow.svg')"
+        alt="arrow"
+      />
     </div>
     <div
-      class="items"
-      :class="{selectHide: !open}"
+      class="base-select__items"
+      :class="{ 'base-select__items--close': !open }"
     >
       <div
-        class="item"
+        class="base-select__item"
         v-for="(option, i) of options"
         :key="i"
-        @click="selected=option; open=false; $emit('input', option)"
+        @click="
+          selected = option;
+          open = false;
+          $emit('input', option);
+        "
       >
         {{ option }}
       </div>
@@ -51,7 +57,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 .base-select {
   position: relative;
   width: 9em;
@@ -61,51 +66,47 @@ export default {
   line-height: 2em;
   margin: 5px;
 
-}
+  .base-select__selected {
+    background-color: #080d0e;
+    color: $color-gray-dark;
+    cursor: pointer;
+    padding: 0 15px 0px 1.5em;
+    user-select: none;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-.selected {
-  background-color: #080D0E;
-  color: $color-gray-dark;
-  padding-left: 1.5em;
-  cursor: pointer;
-  user-select: none;
-  border-radius: 3px;
-}
+    .selected__arrow--open {
+      transform: rotate(180deg);
+    }
+  }
 
-.selected:after {
-  position: absolute;
-  content: "";
-  top: 22px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 4px solid transparent;
-}
+  .base-select__items {
+    color: #ffffff;
+    overflow: hidden;
+    position: absolute;
+    background-color: #080d0e;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.164);
 
-.items {
-  color: #ffffff;
-  overflow: hidden;
-  position: absolute;
-  background-color: #080D0E;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.164);
-}
+    &--close {
+      display: none;
+    }
 
-.item{
-  color: $color-gray-dark;
-  border-top: solid 0.01em $color-gray-ligth;
-  padding-left: 1.5em;
-  cursor: pointer;
-  user-select: none;
-}
+    .base-select__item {
+      color: $color-gray-dark;
+      border-top: solid 0.01em $color-gray-ligth;
+      padding-left: 1.5em;
+      cursor: pointer;
+      user-select: none;
 
-.item:hover{
-  color: #ffffff;
-}
-
-.selectHide {
-  display: none;
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
 }
 </style>
