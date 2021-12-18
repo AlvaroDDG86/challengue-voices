@@ -1,5 +1,7 @@
 # challengue-voices
 
+[LIVE APP](https://quirky-turing-2080f9.netlify.app)
+
 ## Project setup
 ```
 npm install
